@@ -1,8 +1,11 @@
 // pages/addLink.tsx
 import React, { useState } from 'react';
 import useFavoritesStore from '../store/favoritesStore';
-import '../styles/styles.css';
 import Link from 'next/link';
+import '../styles/styles.css';
+import Footer from '../components/Footer'; // Importando o componente Footer
+import Button from '../components/Button'; // Importando o componente Button
+import DeleteAllButton from '../components/DeleteAllButton'; // Importando o componente DeleteAllButton
 
 const AddLinkPage: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -11,12 +14,12 @@ const AddLinkPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title.trim() !== '' && url.trim() !== '') { // Verifica se ambos os campos não estão em branco
+    if (title.trim() !== '' && url.trim() !== '') {
       addFavorite({ id: Math.random(), title, url });
       setTitle('');
       setUrl('');
     } else {
-      alert('Por favor, preencha todos os campos.'); // Exibe um alerta se algum campo estiver em branco
+      alert('Por favor, preencha todos os campos.');
     }
   };
 
@@ -28,11 +31,13 @@ const AddLinkPage: React.FC = () => {
         <input type="text" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} className="input" />
         <button type="submit" className="btn">Adicionar</button>
       </form>
-      <Link href="/">
-        <span className="link">Voltar para Meus Favoritos</span>
-      </Link>
+      <Button href="/">Voltar para Meus Favoritos</Button> {}
+      <DeleteAllButton /> {}
+      <Footer /> {}
     </div>
   );
 };
 
 export default AddLinkPage;
+
+

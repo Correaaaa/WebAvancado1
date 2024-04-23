@@ -2,6 +2,10 @@
 import React from 'react';
 import useFavoritesStore from '../store/favoritesStore';
 import Link from 'next/link';
+import '../styles/styles.css';
+import Footer from '../components/Footer'; 
+import Button from '../components/Button'; 
+import DeleteAllButton from '../components/DeleteAllButton';
 
 const IndexPage: React.FC = () => {
   const { favorites, removeFavorite } = useFavoritesStore();
@@ -17,9 +21,9 @@ const IndexPage: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Link href="/addLink">
-        <span className="link">Adicionar Novo Link</span>
-      </Link>
+      <Button href="/addLink">Adicionar Novo Link</Button> {}
+      <DeleteAllButton /> {}
+      <Footer /> {}
     </div>
   );
 };

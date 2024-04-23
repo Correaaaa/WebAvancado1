@@ -1,9 +1,11 @@
 /* styles/styles.css */
 
 body {
-  background-color: beige; /* Aplica a cor de fundo bege em todo o corpo da página */
-  font-family: 'Arial Rounded MT Bold', sans-serif; /* Define a fonte de texto */
-  font-size: 150%; /* Aumenta o tamanho da fonte em 50% */
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  background-color: beige;
 }
 
 .container {
@@ -11,6 +13,11 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: beige;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .list {
@@ -21,12 +28,12 @@ body {
 .list-item {
   border-bottom: 1px solid black;
   padding: 10px 0;
-  display: flex; /* Adiciona display flex para permitir alinhamento vertical */
-  align-items: center; /* Alinha itens verticalmente */
+  display: flex; 
+  align-items: center; 
 }
 
 .list-item a {
-  flex: 1; /* Permite que o link ocupe o espaço restante */
+  flex: 1; 
 }
 
 .btn {
@@ -35,7 +42,7 @@ body {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  margin-left: 10px; /* Adiciona espaço entre o link e o botão */
+  margin-left: 10px;
 }
 
 .btn:hover {
@@ -52,13 +59,28 @@ body {
 .link {
   color: black;
   cursor: pointer;
+  display: block; 
+  text-align: center;
 }
 
 .link:hover {
   text-decoration: underline;
 }
 
-/* Aumenta o tamanho do título h1 */
 h1 {
-  font-size: 200%;
+  font-size: 100%;
+  text-align: center;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: beige;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
