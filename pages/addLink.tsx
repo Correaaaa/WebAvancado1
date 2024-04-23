@@ -1,6 +1,7 @@
 // pages/addLink.tsx
 import React, { useState } from 'react';
 import useFavoritesStore from '../store/favoritesStore';
+import '../styles/styles.css';
 import Link from 'next/link';
 
 const AddLinkPage: React.FC = () => {
@@ -10,21 +11,25 @@ const AddLinkPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addFavorite({ id: Math.random(), title, url });
-    setTitle('');
-    setUrl('');
+    if (title.trim() !== '' && url.trim() !== '') { // Verifica se ambos os campos não estão em branco
+      addFavorite({ id: Math.random(), title, url });
+      setTitle('');
+      setUrl('');
+    } else {
+      alert('Por favor, preencha todos os campos.'); // Exibe um alerta se algum campo estiver em branco
+    }
   };
 
   return (
-    <div>
-      <h1>Adicionar Link</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input type="text" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} />
-        <button type="submit">Adicionar</button>
+    <div className="container">
+      <h1 style={{ fontSize: '24px', marginBottom: '20px' }}>Adicionar Link</h1>
+      <form onSubmit={handleSubmit} className="form">
+        <input type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} className="input" />
+        <input type="text" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} className="input" />
+        <button type="submit" className="btn">Adicionar</button>
       </form>
       <Link href="/">
-        <span>Voltar para Meus Favoritos</span>
+        <span className="link">Voltar para Meus Favoritos</span>
       </Link>
     </div>
   );

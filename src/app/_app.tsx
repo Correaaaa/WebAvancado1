@@ -1,6 +1,6 @@
 // src/app/_app.tsx
 
-import '../styles/globals.css'; // Importa estilos globais
+import '../styles/styles.css'; // Importa os estilos CSS
 import React from 'react';
 import type { AppProps } from 'next/app';
 

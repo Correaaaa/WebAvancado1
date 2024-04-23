@@ -1,0 +1,64 @@
+/* styles/styles.css */
+
+body {
+  background-color: beige; /* Aplica a cor de fundo bege em todo o corpo da página */
+  font-family: 'Arial Rounded MT Bold', sans-serif; /* Define a fonte de texto */
+  font-size: 150%; /* Aumenta o tamanho da fonte em 50% */
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: beige;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  display: flex; /* Adiciona display flex para permitir alinhamento vertical */
+  align-items: center; /* Alinha itens verticalmente */
+}
+
+.list-item a {
+  flex: 1; /* Permite que o link ocupe o espaço restante */
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px; /* Adiciona espaço entre o link e o botão */
+}
+
+.btn:hover {
+  background-color: gray;
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: black;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Aumenta o tamanho do título h1 */
+h1 {
+  font-size: 200%;
+}
