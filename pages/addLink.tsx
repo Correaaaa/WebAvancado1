@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import useFavoritesStore from '../store/favoritesStore';
 import Link from 'next/link';
 import '../styles/styles.css';
-import Footer from '../components/Footer'; // Importando o componente Footer
-import Button from '../components/Button'; // Importando o componente Button
-import DeleteAllButton from '../components/DeleteAllButton'; // Importando o componente DeleteAllButton
+import Footer from '../components/Footer';
+import Button from '../components/Button';
+import DeleteAllButton from '../components/DeleteAllButton';
 
 const AddLinkPage: React.FC = () => {
   const [title, setTitle] = useState('');
