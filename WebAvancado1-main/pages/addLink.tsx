@@ -17,7 +17,7 @@ const AddLinkPage: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ titulo: title, url: url }), // Enviar os dados como JSON
+          body: JSON.stringify({ titulo: title, url: url }),
         });
         if (!response.ok) {
           throw new Error('Erro ao adicionar favorito');

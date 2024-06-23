@@ -1,4 +1,3 @@
-// pages/index.tsx
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import '../styles/styles.css';
@@ -10,9 +9,13 @@ const IndexPage: React.FC = () => {
   const [editModeId, setEditModeId] = useState<number | null>(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
   const [updatedUrl, setUpdatedUrl] = useState('');
+  const [searchUrl, setSearchUrl] = useState('');
+  const [searchTitle, setSearchTitle] = useState('');
+  const [totalFavorites, setTotalFavorites] = useState(0);
 
   useEffect(() => {
     fetchFavorites();
+    fetchTotalFavorites();
   }, []);
 
   const fetchFavorites = async () => {
@@ -25,6 +28,45 @@ const IndexPage: React.FC = () => {
       setFavorites(data);
     } catch (error) {
       console.error('Error fetching favorites:', error);
+    }
+  };
+
+  const fetchTotalFavorites = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/count');
+      if (!response.ok) {
+        throw new Error('Failed to fetch total favorites');
+      }
+      const data = await response.json();
+      setTotalFavorites(data.count);
+    } catch (error) {
+      console.error('Error fetching total favorites:', error);
+    }
+  };
+
+  const searchFavoritesByUrl = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/search/url/${searchUrl}`);
+      if (!response.ok) {
+        throw new Error('Failed to search favorites by URL');
+      }
+      const data = await response.json();
+      setFavorites(data);
+    } catch (error) {
+      console.error('Error searching favorites by URL:', error);
+    }
+  };
+
+  const searchFavoritesByTitle = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/search/titulo/${searchTitle}`);
+      if (!response.ok) {
+        throw new Error('Failed to search favorites by title');
+      }
+      const data = await response.json();
+      setFavorites(data);
+    } catch (error) {
+      console.error('Error searching favorites by title:', error);
     }
   };
 
@@ -81,9 +123,42 @@ const IndexPage: React.FC = () => {
     setUpdatedUrl(event.target.value);
   };
 
+  const handleSearchUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchUrl(event.target.value);
+  };
+
+  const handleSearchTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTitle(event.target.value);
+  };
+
   return (
     <div className="container">
       <h1 style={{ fontSize: '24px', marginBottom: '20px' }}>Meus Favoritos</h1>
+      <p>Total de favoritos: {totalFavorites}</p>
+      <div>
+        <input
+          type="text"
+          value={searchTitle}
+          onChange={handleSearchTitleChange}
+          placeholder="Buscar por Título"
+          className="input"
+        />
+        <button className="btn" onClick={searchFavoritesByTitle}>
+          Buscar
+        </button>
+      </div>
+      <div>
+        <input
+          type="text"
+          value={searchUrl}
+          onChange={handleSearchUrlChange}
+          placeholder="Buscar por URL"
+          className="input"
+        />
+        <button className="btn" onClick={searchFavoritesByUrl}>
+          Buscar
+        </button>
+      </div>
       <ul className="list">
         {favorites.map((favorite: any) => (
           <li key={favorite._id} className="list-item">
@@ -128,8 +203,8 @@ const IndexPage: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Button href="/addLink">Adicionar Novo Favorito</Button> {}
-      <Footer /> {}
+      <Button href="/addLink">Adicionar Novo Favorito</Button> 
+      <Footer /> 
     </div>
   );
 };

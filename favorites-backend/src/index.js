@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Importe o módulo cors
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Use o middleware do cors
+app.use(cors());
 
 const PORT = 5000;
 
@@ -53,6 +53,41 @@ app.delete('/:id', async (req, res) => {
         res.json(favorito);
     } catch (error) {
         console.error('Erro ao remover favorito:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+// Endpoint para retornar o número total de favoritos
+app.get('/count', async (req, res) => {
+    try {
+        const count = await Favorito.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        console.error('Erro ao contar favoritos:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+// Endpoint para retornar favoritos cuja URL contém uma string
+app.get('/search/url/:url', async (req, res) => {
+    const { url } = req.params;
+    try {
+        const favoritos = await Favorito.find({ url: { $regex: url, $options: 'i' } });
+        res.json(favoritos);
+    } catch (error) {
+        console.error('Erro ao buscar favoritos por URL:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+// Endpoint retornar favoritos cujo título contém uma string
+app.get('/search/titulo/:titulo', async (req, res) => {
+    const { titulo } = req.params;
+    try {
+        const favoritos = await Favorito.find({ titulo: { $regex: titulo, $options: 'i' } });
+        res.json(favoritos);
+    } catch (error) {
+        console.error('Erro ao buscar favoritos por título:', error);
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
