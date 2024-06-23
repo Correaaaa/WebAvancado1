@@ -1,0 +1,86 @@
+/* styles/styles.css */
+
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  background-color: beige;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: beige;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  display: flex; 
+  align-items: center; 
+}
+
+.list-item a {
+  flex: 1; 
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: gray;
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: black;
+  cursor: pointer;
+  display: block; 
+  text-align: center;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 100%;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: beige;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
